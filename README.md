@@ -36,7 +36,15 @@ Install-Package ChatAsistant
 
 ## Quick start (ASP.NET Core)
 
-Register services:
+Register services (with `appsettings.json` binding):
+
+```csharp
+using ChatAsistant;
+
+builder.Services.AddChatAsistant(builder.Configuration);
+```
+
+Or configure everything in code:
 
 ```csharp
 using ChatAsistant;
@@ -110,7 +118,7 @@ You can configure these via `AddChatAsistant`:
 
 ### System prompt sources
 
-You can provide the system prompt in several ways (priority order):
+You can provide the system prompt in several ways (priority order, if nothing is set the built-in default is used):
 
 1. **Provider** – implement `ISystemPromptProvider` in your app and register it:
 
