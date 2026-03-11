@@ -7,7 +7,7 @@
         <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
 
         <PackageId>ChatAsistant</PackageId>
-        <Version>1.0.2</Version>
+        <Version>1.0.3</Version>
         <Authors>AlperenAvci</Authors>
         <Company>AlperenAvci</Company>
         <PackageDescription>A package designed to easily integrate a Chat Assistant into your project</PackageDescription>

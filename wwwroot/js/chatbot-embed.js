@@ -251,7 +251,7 @@
       chip.type = "button";
       chip.className = "cb-embed-link-chip";
       chip.innerHTML = "<span>Sayfayı aç</span>" + LINK_ARROW_SVG;
-      chip.addEventListener("click", () => { window.location.href = options.linkUrl; });
+      chip.addEventListener("click", () => { window.open(options.linkUrl, "_blank"); });
       bubble.appendChild(chip);
     }
 
