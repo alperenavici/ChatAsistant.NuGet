@@ -115,7 +115,3 @@ The package uses EF Core and maps a `PageRoutes` table with a pgvector column. M
 
 The widget expects an avatar at `/{prefix}/images/bot-avatar.png`. If you don’t ship one, you can add your own file at that path in your host app (or modify the widget to point to a different image).
 
-## License
-
-MIT
-
