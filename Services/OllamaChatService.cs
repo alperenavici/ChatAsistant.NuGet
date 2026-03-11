@@ -8,15 +8,27 @@ public class OllamaChatService : IChatService
 {
     private readonly HttpClient _httpClient;
     private readonly ChatAsistantOptions _options;
+    private readonly ISystemPromptProvider? _promptProvider;
 
-    public OllamaChatService(HttpClient httpClient, IOptions<ChatAsistantOptions> options)
+    public OllamaChatService(
+        HttpClient httpClient,
+        IOptions<ChatAsistantOptions> options,
+        ISystemPromptProvider? promptProvider = null)
     {
         _httpClient = httpClient;
         _options = options.Value;
+        _promptProvider = promptProvider;
     }
 
     public async Task<string> ChatAsync(string userMessage, string context = "")
     {
+        var systemPrompt = _options.SystemPrompt;
+
+        if (_promptProvider is not null)
+        {
+            systemPrompt = await _promptProvider.GetPromptAsync();
+        }
+
         var finalMessage = string.IsNullOrEmpty(context)
             ? userMessage
             : $"İşte sistemden bulduğum bazı bilgiler:\n{context}\n\nKullanıcı Sorusu: {userMessage}";
@@ -26,7 +38,7 @@ public class OllamaChatService : IChatService
             model = _options.ChatModel,
             messages = new[]
             {
-                new { role = "system", content = _options.SystemPrompt },
+                new { role = "system", content = systemPrompt },
                 new { role = "user", content = finalMessage }
             },
             stream = false

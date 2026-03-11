@@ -105,7 +105,49 @@ You can configure these via `AddChatAsistant`:
 - `MaxEmbeddingInputLength`: trims long inputs before embedding (default: `500`)
 - `RoutePrefix`: URL prefix for static files + API (default: `_chatasistant`)
 - `SystemPrompt`: system prompt sent to the chat model
+- `SystemPromptFilePath`: optional file path to load the system prompt from (relative to content root)
 - `ApiKey`: reserved for API key scenarios (the widget sends `X-API-Key` if provided)
+
+### System prompt sources
+
+You can provide the system prompt in several ways (priority order):
+
+1. **Provider** – implement `ISystemPromptProvider` in your app and register it:
+
+   ```csharp
+   services.AddSingleton<ISystemPromptProvider, MySystemPromptProvider>();
+   services.AddChatAsistant(configuration);
+   ```
+
+2. **File** – point to a text file in your host app:
+
+   ```json
+   {
+     "ChatAsistant": {
+       "SystemPromptFilePath": "Prompts/system-prompt.txt"
+     }
+   }
+   ```
+
+3. **Inline in appsettings/options**:
+
+   ```json
+   {
+     "ChatAsistant": {
+       "SystemPrompt": "Sen bir e-ticaret asistanısın..."
+     }
+   }
+   ```
+
+   or:
+
+   ```csharp
+   builder.Services.AddChatAsistant(o =>
+   {
+       o.ConnectionString = "...";
+       o.SystemPrompt = "Sen bir e-ticaret asistanısın...";
+   });
+   ```
 
 ## Database notes
 

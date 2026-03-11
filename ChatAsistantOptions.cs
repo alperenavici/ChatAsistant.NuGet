@@ -10,6 +10,7 @@ public class ChatAsistantOptions
     public int MaxEmbeddingInputLength { get; set; } = 500;
     public string RoutePrefix { get; set; } = "_chatasistant";
     public string? ApiKey { get; set; }
+    public string? SystemPromptFilePath { get; set; }
 
     public string SystemPrompt { get; set; } = """
         Sen bu platformun profesyonel, kibar ve net bir asistanısın.
