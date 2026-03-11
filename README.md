@@ -16,7 +16,23 @@
 
 ## Install
 
-- NuGet: install `ChatAsistant`
+- **.NET CLI**
+
+```bash
+dotnet add package ChatAsistant
+```
+
+- **Package Manager Console**
+
+```powershell
+Install-Package ChatAsistant
+```
+
+- **Package reference**
+
+```xml
+<PackageReference Include="ChatAsistant" Version="1.0.1" />
+```
 
 ## Quick start (ASP.NET Core)
 
